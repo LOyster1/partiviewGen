@@ -1,0 +1,17 @@
+eval clip 1 1000000
+object g1=nodes
+textcment 1 1 0 0
+include ../completeLayout_nodes.speck
+eval alpha 1
+eval lsize 25
+eval laxes off
+eval label on
+object g2=edges
+cment 0 1 1 1
+include ../completeLayout_edges.speck
+eval alpha .1
+object g3=noodles
+cment 0 1 1 1
+include ../completeLayout_noodles.speck
+eval alpha .1
+include ../completeLayout_mesh.speck

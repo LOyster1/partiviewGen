@@ -1,0 +1,12 @@
+	ButtonText "plugin loading..."
++1	Plugin Load "DU"
++1	Plugin Show "DU"
++1
+	ButtonText "dataset loading..."
+	Scene Add Object "graph" "World" "<ShowPath>\../completeLayout.cf"
+	Scene View "graph" 0 100
+	Navigator SweetSpot [0:0:0] 180 90
+	Scene Camera Center World
+	ButtonText "remove data"
+	stop
+	Scene Remove "graph"
