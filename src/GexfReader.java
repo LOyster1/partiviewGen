@@ -12,6 +12,7 @@ public class GexfReader implements GraphReader
 	GraphV2 graph = new GraphV2();
 	int idCounter = 0;
 	int nodeCounter = 0;
+        public int greatestZ =0;
         
 	ArrayList<Integer> dates = new ArrayList<>();
 
@@ -34,6 +35,21 @@ public class GexfReader implements GraphReader
 	{
 		return path;
 	}
+        public int getGreatestZFromDates()
+        {
+            for(int i=0; i<=dates.size()-1;i++)
+            {
+                if(greatestZ < dates.get(i))
+                {
+                    greatestZ=dates.get(i);
+                }
+            }
+            System.out.println("Greatest Z from Dates equals "+ greatestZ);
+            return greatestZ;
+        }
+        public void setGreatestZ(int greatestZIn){
+            greatestZ=greatestZIn;
+        }
 
 	public GraphV2 getGraph()
 	{
@@ -111,18 +127,33 @@ public class GexfReader implements GraphReader
 			}
 			
 			// Creates the time intervals from the start and endopen values
+                        
+                        //Needs to be fixed to set end time to GreatestZ if there is no matching end time for a start time
 			else if (token.startsWith("start="))
 			{
 				start.add(convertDateToInt(7, token));
-				if(token.endsWith(">"))
+                                if(token.endsWith(">"))
 				{
-					end.add(convertDateToInt(7, token));
+                                        //end.add(convertDateToInt(7, token));
+                                        System.out.println("Greatest Z: "+greatestZ);
+					end.add(greatestZ);
+                                       // break;
 				}
+                                else
+                                {
+                                    token = file.next();
+                                }
+                                
+                                if (token.startsWith("endopen="))
+                                {
+                                    end.add(convertDateToInt(9, token));
+                                }
+//                                
 			}
-			else if (token.startsWith("endopen="))
-			{
-				end.add(convertDateToInt(9, token));
-			}
+//			else if (token.startsWith("endopen="))
+//			{
+//				end.add(convertDateToInt(9, token));
+//			}
 			
 			// Creates a single time instance at the start value
 			//else if (token.startsWith("start="))

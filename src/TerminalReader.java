@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 public class TerminalReader 
 {
         public static ArrayList<GraphV2> individualGraphs;
+        public static int overallGreatestZ;
 	// Method used to create speck files from a .gexf and date.txt
 	public static void terminal(String arg, String dates)
 	{
@@ -134,6 +135,10 @@ public class TerminalReader
 		
 		graphReader = new GexfReader(path);
 		graphReader.relevantDates(dates);
+                
+                graphReader.getGreatestZFromDates();
+                overallGreatestZ= graphReader.getGreatestZFromDates();
+                
 		graph = graphReader.getGraph();
 		System.out.println("graph: " + graph.getNodeList().get(0).getRadius());
 		creator.setGraph(graph);
@@ -168,6 +173,7 @@ public class TerminalReader
 		            System.out.println(filePath);
                             GexfReader graphRead = new GexfReader(filePath.toString());
                             graphRead.relevantDates(dates);
+                            graphRead.setGreatestZ(overallGreatestZ);
                             GraphV2 graphtemp = graphRead.getGraph();
                             System.out.println("graph: " + graph.getNodeList().get(0).getRadius());
                             graphtemp.setGraphName(filePath.toString());
