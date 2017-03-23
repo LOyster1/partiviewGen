@@ -97,7 +97,7 @@ public class GexfReader implements GraphReader
 		ArrayList<Integer> start = new ArrayList<>();
 		ArrayList<Integer> end = new ArrayList<>();
 		boolean loop = true;
-
+                int spellCounter=0;
 		do
 		{
 			token = file.next();
@@ -123,6 +123,9 @@ public class GexfReader implements GraphReader
 			}
 			else if (token.equalsIgnoreCase("<spell"))
 			{
+                                spellCounter++;
+                                System.out.println("Starting Spell Node Id: " + node.getLabel() + " Spell Count "+ spellCounter);
+                                
 				spellTimes(file, start, end);
 			}
 			
@@ -135,7 +138,7 @@ public class GexfReader implements GraphReader
                                 if(token.endsWith(">"))
 				{
                                         //end.add(convertDateToInt(7, token));
-                                        System.out.println("Greatest Z: "+greatestZ);
+                                        System.out.println("Node Id: " + node.getLabel()+ " Greatest Z: "+greatestZ);
 					end.add(greatestZ);
                                        // break;
 				}
@@ -146,6 +149,7 @@ public class GexfReader implements GraphReader
                                 
                                 if (token.startsWith("endopen="))
                                 {
+                                    System.out.println("Node Id: " + node.getLabel()+ " Ended a start, kill me");
                                     end.add(convertDateToInt(9, token));
                                 }
 //                                
@@ -278,6 +282,8 @@ public class GexfReader implements GraphReader
 	public void spellTimes(Scanner file, ArrayList<Integer> start, ArrayList<Integer> end)
 	{
 		String token;
+                //Test
+                int spellCounter=0;
 		do
 		{
 			token = file.next();
@@ -285,17 +291,47 @@ public class GexfReader implements GraphReader
 			//----- for Time Interval -----//
 			if(token.startsWith("start="))
 			{
+                                spellCounter++;
+                              //  System.out.println("Start of Spell.. Spell Count: " +spellCounter + " Greatest Z: "+greatestZ);
 				start.add(convertDateToInt(7, token));
 				if(token.endsWith("</spell>"))
 				{
-					end.add(convertDateToInt(7, token));
+					//end.add(convertDateToInt(7, token));
+                                //        System.out.println("Node goes to end Spell Count: " +spellCounter + " Greatest Z: "+greatestZ);
+					end.add(greatestZ);
 				}
 			}
 			else if(token.startsWith("endopen="))
 			{
 				end.add(convertDateToInt(9, token));
+                                spellCounter++;
+                                //System.out.println("End of Spell.. Spell Count: " +spellCounter  + " Ended a start, kill me");
 			}
 			
+                        /*
+                         if (token.startsWith("start="))
+			{
+				start.add(convertDateToInt(7, token));
+                                if(token.endsWith(">"))
+				{
+                                        //end.add(convertDateToInt(7, token));
+                                        System.out.println("Node Id: " + node.getLabel()+ " Greatest Z: "+greatestZ);
+					end.add(greatestZ);
+                                       // break;
+				}
+                                else
+                                {
+                                    token = file.next();
+                                }
+                                
+                                if (token.startsWith("endopen="))
+                                {
+                                    System.out.println("Node Id: " + node.getLabel()+ " Ended a start, kill me");
+                                    end.add(convertDateToInt(9, token));
+                                }
+                        
+                        */
+                        
 			//----- for Single Instance -----//
 			/*if(token.startsWith("start="))
 			{

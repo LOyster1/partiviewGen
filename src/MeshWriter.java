@@ -88,8 +88,8 @@ public class MeshWriter{
                             if(i==individualGraphs.get(j).getIndividualFileDate())
                             {
                                 
-                                System.out.println("\n\n Update Mod i value: "+i+" File Name: " + individualGraphs.get(j).getGraphName() + " File Date: " + individualGraphs.get(j).getIndividualFileDate()+"\n\n");
-                                System.out.println("Update Mod Node list size: " + individualGraphs.get(j).getNodeListSize());
+                              System.out.println("\n\n Update Mod i value: "+i+" File Name: " + individualGraphs.get(j).getGraphName() + " File Date: " + individualGraphs.get(j).getIndividualFileDate()+"\n\n");
+                                //System.out.println("Update Mod Node list size: " + individualGraphs.get(j).getNodeListSize());
                                 for(int k=0; k<=individualGraphs.get(j).getNodeListSize()-1;k++)
                                 {
                                     System.out.println("Update Mod Node list size: " + individualGraphs.get(j).getNodeListSize());
@@ -98,8 +98,8 @@ public class MeshWriter{
                                     {
                                         if(completeGraph.getNodeList().get(x).getZ()==individualGraphs.get(j).getIndividualFileDate() &&
                                                 completeGraph.getNodeList().get(x).getLabel().equals(individualGraphs.get(j).getNodeList().get(k).getLabel())){
-                                                System.out.println("Raw Data Label: "+ completeGraph.getNodeList().get(x).getLabel()+ " Mod Class: "+ completeGraph.getNodeList().get(x).getModClass()+
-                                                " Individual Raw Data: "+ individualGraphs.get(j).getNodeList().get(k).getLabel() + " Mod Clss: "+ individualGraphs.get(j).getNodeList().get(k).getModClass());
+                                              //  System.out.println("Raw Data Label: "+ completeGraph.getNodeList().get(x).getLabel()+ " Mod Class: "+ completeGraph.getNodeList().get(x).getModClass()+
+                                               // " Individual Raw Data: "+ individualGraphs.get(j).getNodeList().get(k).getLabel() + " Mod Clss: "+ individualGraphs.get(j).getNodeList().get(k).getModClass());
                                                 completeGraph.getNodeList().get(x).setModClass(individualGraphs.get(j).getNodeList().get(k).getModClass());
                                         }
                                     }

@@ -138,6 +138,7 @@ public class TerminalReader
                 
                 graphReader.getGreatestZFromDates();
                 overallGreatestZ= graphReader.getGreatestZFromDates();
+                System.out.println("OVERALL GREATEST Z"+overallGreatestZ);
                 
 		graph = graphReader.getGraph();
 		System.out.println("graph: " + graph.getNodeList().get(0).getRadius());
@@ -203,6 +204,7 @@ public class TerminalReader
 		    });
 		}
                 writer.getMeshWriter().setIndividualGraphs(individualGraphs);
+                //--
                 writer.getMeshWriter().updateModClassFromIndiv();
                // writer.getMeshWriter().printNodeLabelAndMods();
                 System.out.println("Size of Discrete Layers: "+ writer.getMeshWriter().getDiscreteLayers().size());
